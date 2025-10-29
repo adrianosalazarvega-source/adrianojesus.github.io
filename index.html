@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Sorteo Adriano</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { text-align: center; font-family: Arial; background: #f0f8ff; }
+    h1 { color: #007bff; }
+    input, button { margin: 8px; padding: 8px; }
+    #ganador { color: #28a745; font-weight: bold; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🎉 Sorteo de Adriano 🎉</h1>
+  <input id="nombre" placeholder="Ingresa tu nombre">
+  <button onclick="agregar()">Agregar participante</button>
+
+  <ul id="lista"></ul>
+
+  <button onclick="sortear()">🎲 Elegir ganador</button>
+  <div id="ganador"></div>
+
+  <script>
+    let participantes = [];
+    function agregar() {
+      const n = document.getElementById('nombre').value.trim();
+      if(n) {
+        participantes.push(n);
+        document.getElementById('lista').innerHTML += `<li>${n}</li>`;
+        document.getElementById('nombre').value = '';
+      }
+    }
+    function sortear() {
+      if(participantes.length === 0) {
+        alert('Agrega participantes primero');
+        return;
+      }
+      const ganador = participantes[Math.floor(Math.random()*participantes.length)];
+      document.getElementById('ganador').innerText = `🎉 El ganador es: ${ganador}! 🎉`;
+    }
+  </script>
+</body>
+</html>
